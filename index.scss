@@ -1,0 +1,21 @@
+#collections {
+
+    & > ol {
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        margin: 0;
+        padding: 0;
+
+        & > li {
+            background: #eee;
+            list-style: none;
+            min-width: 200px;
+            min-height: 200px;
+            margin: 10px;
+            padding: 5px;
+        }
+    }
+
+}

@@ -5,8 +5,9 @@ module.exports = {
   entry: './index.js',
 
   output: {
-    path: path.resolve(__dirname),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname + '/content'),
+    filename: 'bundle.js',
+    publicPath: '/content',
   },
 
   module: {
@@ -29,10 +30,7 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)$/,
         use: [
           {
-            loader: "file-loader",
-            options: {
-              outputPath: 'images'
-            }
+            loader: "file-loader?name=/img/[name].[ext]",
           }
         ]
       }
@@ -40,10 +38,12 @@ module.exports = {
   },
   devServer: {
     contentBase: path.join(__dirname),
+    publicPath: '/content',
     compress: true,
     port: 9000,
     host: '0.0.0.0',
     disableHostCheck: true,
+    liveReload: true,
   },
   mode: 'development'
 };

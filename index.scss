@@ -46,10 +46,20 @@ nav {
     ol {
         list-style: none;
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
 
         li {
             padding: 1vh;
             white-space: nowrap;
+            line-height: 2rem;
+
+            &.i18n {
+                font-size: 150%;
+                span {
+                    padding: 5px;
+                }
+            }
         }
     }
 }
@@ -88,8 +98,7 @@ nav {
                     margin: -5px 0;
                     flex-grow: 1;
                     content: " ";
-                    background: center / contain no-repeat;
-                    background-position: right center;
+                    background: right center / contain no-repeat;
                     background-color: $main-color;
                 }
 
@@ -154,6 +163,15 @@ nav {
                         flex-direction: column;
                         justify-content: center;
 
+                        &.weather {
+                            > p:before {
+                                content: " ";
+                                width: 60px;
+                                height: 60px;
+                                background: right center / contain no-repeat url(images/icons/cloudy-day.svg);
+                                margin-right: 4px;
+                            }
+                        }
 
                         > h3 {
                             margin: 0;
@@ -170,6 +188,8 @@ nav {
                             font-size: 2rem;
                             margin: 0;
                             padding: 0;
+                            display: flex;
+                            align-items: center;
                             span {
                                 font-size: 1rem;
                             }

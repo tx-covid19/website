@@ -86,15 +86,99 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./covid19.png":
-/*!*********************!*\
-  !*** ./covid19.png ***!
-  \*********************/
+/***/ "./images/covid19.png":
+/*!****************************!*\
+  !*** ./images/covid19.png ***!
+  \****************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"/img/covid19.png\");\n\n//# sourceURL=webpack:///./covid19.png?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"/content/img/images/covid19.png\");\n\n//# sourceURL=webpack:///./images/covid19.png?");
+
+/***/ }),
+
+/***/ "./images/w-icons/cost.svg":
+/*!*********************************!*\
+  !*** ./images/w-icons/cost.svg ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"/content/img/w-icons/cost.svg\");\n\n//# sourceURL=webpack:///./images/w-icons/cost.svg?");
+
+/***/ }),
+
+/***/ "./images/w-icons/interaction.svg":
+/*!****************************************!*\
+  !*** ./images/w-icons/interaction.svg ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"/content/img/w-icons/interaction.svg\");\n\n//# sourceURL=webpack:///./images/w-icons/interaction.svg?");
+
+/***/ }),
+
+/***/ "./images/w-icons/isolation.svg":
+/*!**************************************!*\
+  !*** ./images/w-icons/isolation.svg ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"/content/img/w-icons/isolation.svg\");\n\n//# sourceURL=webpack:///./images/w-icons/isolation.svg?");
+
+/***/ }),
+
+/***/ "./images/w-icons/mood.svg":
+/*!*********************************!*\
+  !*** ./images/w-icons/mood.svg ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"/content/img/w-icons/mood.svg\");\n\n//# sourceURL=webpack:///./images/w-icons/mood.svg?");
+
+/***/ }),
+
+/***/ "./images/w-icons/scale.svg":
+/*!**********************************!*\
+  !*** ./images/w-icons/scale.svg ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"/content/img/w-icons/scale.svg\");\n\n//# sourceURL=webpack:///./images/w-icons/scale.svg?");
+
+/***/ }),
+
+/***/ "./images/w-icons/screen.svg":
+/*!***********************************!*\
+  !*** ./images/w-icons/screen.svg ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"/content/img/w-icons/screen.svg\");\n\n//# sourceURL=webpack:///./images/w-icons/screen.svg?");
+
+/***/ }),
+
+/***/ "./images/w-icons/temperature.svg":
+/*!****************************************!*\
+  !*** ./images/w-icons/temperature.svg ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"/content/img/w-icons/temperature.svg\");\n\n//# sourceURL=webpack:///./images/w-icons/temperature.svg?");
 
 /***/ }),
 
@@ -128,7 +212,7 @@ eval("var api = __webpack_require__(/*! ./node_modules/style-loader/dist/runtime
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nvar ___CSS_LOADER_GET_URL_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/getUrl.js */ \"./node_modules/css-loader/dist/runtime/getUrl.js\");\nvar ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(/*! ./covid19.png */ \"./covid19.png\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\nvar ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);\n// Module\nexports.push([module.i, \"*, ::after, ::before {\\n  box-sizing: border-box; }\\n\\nhtml, body {\\n  margin: 0;\\n  font-family: -apple-system,BlinkMacSystemFont,\\\"Segoe UI\\\",Roboto,\\\"Helvetica Neue\\\",Arial,\\\"Noto Sans\\\",sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\",\\\"Segoe UI Symbol\\\",\\\"Noto Color Emoji\\\";\\n  font-size: 1rem;\\n  font-weight: 400;\\n  line-height: 1.5; }\\n\\nnav {\\n  display: flex;\\n  padding: 1vh;\\n  color: #fff;\\n  background: #005581; }\\n  nav h1 {\\n    flex-grow: 1;\\n    background-image: url(\" + ___CSS_LOADER_URL_REPLACEMENT_0___ + \");\\n    background-repeat: no-repeat;\\n    background-position: left center;\\n    background-size: contain;\\n    padding-left: 3rem; }\\n  nav ol {\\n    list-style: none;\\n    display: flex; }\\n    nav ol li {\\n      padding: 1vh; }\\n\\n#collections > ol {\\n  display: flex;\\n  flex-wrap: wrap;\\n  align-items: center;\\n  justify-content: center;\\n  margin: 0;\\n  padding: 0; }\\n  #collections > ol h2 {\\n    margin: 0;\\n    padding: 5px 10px;\\n    color: #fff;\\n    background: #005581;\\n    margin: -0.5vw;\\n    margin-bottom: 1vw;\\n    font-size: 0.9rem;\\n    font-weight: normal; }\\n  #collections > ol > li {\\n    box-shadow: 0 8px 10px #BBB;\\n    list-style: none;\\n    width: 45vw;\\n    max-width: 500px;\\n    min-height: 200px;\\n    margin: 0.5vw;\\n    padding: 0.5vw; }\\n\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack:///./index.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
+eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nvar ___CSS_LOADER_GET_URL_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/getUrl.js */ \"./node_modules/css-loader/dist/runtime/getUrl.js\");\nvar ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(/*! ./images/covid19.png */ \"./images/covid19.png\");\nvar ___CSS_LOADER_URL_IMPORT_1___ = __webpack_require__(/*! ./images/w-icons/isolation.svg */ \"./images/w-icons/isolation.svg\");\nvar ___CSS_LOADER_URL_IMPORT_2___ = __webpack_require__(/*! ./images/w-icons/cost.svg */ \"./images/w-icons/cost.svg\");\nvar ___CSS_LOADER_URL_IMPORT_3___ = __webpack_require__(/*! ./images/w-icons/interaction.svg */ \"./images/w-icons/interaction.svg\");\nvar ___CSS_LOADER_URL_IMPORT_4___ = __webpack_require__(/*! ./images/w-icons/mood.svg */ \"./images/w-icons/mood.svg\");\nvar ___CSS_LOADER_URL_IMPORT_5___ = __webpack_require__(/*! ./images/w-icons/screen.svg */ \"./images/w-icons/screen.svg\");\nvar ___CSS_LOADER_URL_IMPORT_6___ = __webpack_require__(/*! ./images/w-icons/scale.svg */ \"./images/w-icons/scale.svg\");\nvar ___CSS_LOADER_URL_IMPORT_7___ = __webpack_require__(/*! ./images/w-icons/temperature.svg */ \"./images/w-icons/temperature.svg\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\nvar ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);\nvar ___CSS_LOADER_URL_REPLACEMENT_1___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_1___);\nvar ___CSS_LOADER_URL_REPLACEMENT_2___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_2___);\nvar ___CSS_LOADER_URL_REPLACEMENT_3___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_3___);\nvar ___CSS_LOADER_URL_REPLACEMENT_4___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_4___);\nvar ___CSS_LOADER_URL_REPLACEMENT_5___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_5___);\nvar ___CSS_LOADER_URL_REPLACEMENT_6___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_6___);\nvar ___CSS_LOADER_URL_REPLACEMENT_7___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_7___);\n// Module\nexports.push([module.i, \"*, ::after, ::before {\\n  box-sizing: border-box; }\\n\\nhtml, body {\\n  margin: 0;\\n  font-family: -apple-system,BlinkMacSystemFont,\\\"Segoe UI\\\",Roboto,\\\"Helvetica Neue\\\",Arial,\\\"Noto Sans\\\",sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\",\\\"Segoe UI Symbol\\\",\\\"Noto Color Emoji\\\";\\n  font-size: 1rem;\\n  font-weight: 400;\\n  line-height: 1.5; }\\n\\nnav {\\n  display: flex;\\n  padding: 1vh;\\n  color: #fff;\\n  background: #005581; }\\n  nav h1 {\\n    flex-grow: 1;\\n    background-image: url(\" + ___CSS_LOADER_URL_REPLACEMENT_0___ + \");\\n    background-repeat: no-repeat;\\n    background-position: left center;\\n    background-size: contain;\\n    padding-left: 5rem; }\\n  nav ol {\\n    list-style: none;\\n    display: flex; }\\n    nav ol li {\\n      padding: 1vh;\\n      white-space: nowrap; }\\n\\n#collections {\\n  padding: 3vmax 0; }\\n  #collections > div {\\n    display: flex;\\n    flex-wrap: wrap;\\n    align-items: center;\\n    justify-content: center;\\n    margin: 0;\\n    padding: 0; }\\n    #collections > div > div {\\n      box-shadow: 0 8px 10px #BBB;\\n      margin: 0.5vmax;\\n      padding: 0.5vmax;\\n      display: flex;\\n      flex-direction: column; }\\n      #collections > div > div.isolation > h2:after {\\n        background-image: url(\" + ___CSS_LOADER_URL_REPLACEMENT_1___ + \"); }\\n      #collections > div > div.cost > h2:after {\\n        background-image: url(\" + ___CSS_LOADER_URL_REPLACEMENT_2___ + \"); }\\n      #collections > div > div.interaction > h2:after {\\n        background-image: url(\" + ___CSS_LOADER_URL_REPLACEMENT_3___ + \"); }\\n      #collections > div > div.mood > h2:after {\\n        background-image: url(\" + ___CSS_LOADER_URL_REPLACEMENT_4___ + \"); }\\n      #collections > div > div.screen > h2:after {\\n        background-image: url(\" + ___CSS_LOADER_URL_REPLACEMENT_5___ + \"); }\\n      #collections > div > div.weight > h2:after {\\n        background-image: url(\" + ___CSS_LOADER_URL_REPLACEMENT_6___ + \"); }\\n      #collections > div > div.temperature > h2:after {\\n        background-image: url(\" + ___CSS_LOADER_URL_REPLACEMENT_7___ + \"); }\\n      #collections > div > div > h2 {\\n        display: flex;\\n        background-color: #005581;\\n        margin: 0;\\n        color: #fff;\\n        margin: -0.5vmax;\\n        padding: 20px 15px 20px 20px;\\n        font-size: 0.9rem;\\n        font-weight: normal;\\n        white-space: nowrap;\\n        overflow: hidden; }\\n        #collections > div > div > h2:after {\\n          margin: -5px 0;\\n          flex-grow: 1;\\n          content: \\\" \\\";\\n          background: center / contain no-repeat;\\n          background-position: right center;\\n          background-color: #005581; }\\n      #collections > div > div > p {\\n        text-align: center;\\n        font-size: 2.5rem;\\n        flex-grow: 1;\\n        margin: 0;\\n        padding: 0;\\n        display: flex;\\n        flex-direction: column;\\n        justify-content: center; }\\n        #collections > div > div > p span {\\n          display: block;\\n          font-size: 1rem; }\\n      #collections > div > div:not(.group) {\\n        width: 25vmax;\\n        height: 25vmax;\\n        max-width: 210px;\\n        max-height: 210px; }\\n      #collections > div > div.group {\\n        width: 100%; }\\n        @media (min-width: 600px) {\\n          #collections > div > div.group {\\n            width: auto; } }\\n        #collections > div > div.group > div {\\n          display: flex;\\n          align-content: stretch;\\n          flex-wrap: wrap;\\n          padding: 0.25vmax;\\n          margin: -0.25vmax;\\n          justify-content: center; }\\n          #collections > div > div.group > div > div {\\n            margin: 0.5vmax;\\n            padding: 0.5vmax;\\n            height: 14.5vmax;\\n            max-height: 160px;\\n            display: flex;\\n            flex-direction: column;\\n            justify-content: center; }\\n            #collections > div > div.group > div > div > h3 {\\n              margin: 0;\\n              padding: 5px 10px;\\n              margin: -0.5vmax;\\n              margin-bottom: 1vmax;\\n              font-size: 0.9rem;\\n              font-weight: normal;\\n              text-align: center; }\\n            #collections > div > div.group > div > div > p {\\n              text-align: center;\\n              font-size: 2rem;\\n              margin: 0;\\n              padding: 0; }\\n              #collections > div > div.group > div > div > p span {\\n                font-size: 1rem; }\\n\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack:///./index.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
 
 /***/ }),
 

@@ -1,3 +1,19 @@
+@mixin for-phone-only {
+    @media (max-width: 599px) { @content; }
+}
+@mixin for-tablet-portrait-up {
+    @media (min-width: 600px) { @content; }
+}
+@mixin for-tablet-landscape-up {
+    @media (min-width: 900px) { @content; }
+}
+@mixin for-desktop-up {
+    @media (min-width: 1200px) { @content; }
+}
+@mixin for-big-desktop-up {
+    @media (min-width: 1800px) { @content; }
+}
+
 $main-color: rgba(0, 85, 129, 1);
 
 *, ::after, ::before {
@@ -20,11 +36,11 @@ nav {
 
     h1 {
         flex-grow: 1;
-        background-image: url(covid19.png);
+        background-image: url(images/covid19.png);
         background-repeat: no-repeat;
         background-position: left center;
         background-size: contain;
-        padding-left: 3rem;
+        padding-left: 5rem;
     }
 
     ol {
@@ -33,41 +49,134 @@ nav {
 
         li {
             padding: 1vh;
-
+            white-space: nowrap;
         }
     }
 }
 
 #collections {
 
-    & > ol {
+    padding: 3vmax 0;
+
+    > div {
 
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: center;;
+        justify-content: center;
         margin: 0;
         padding: 0;
 
-        h2 {
-            margin: 0;
-            padding: 5px 10px;
-            color: #fff;
-            background: $main-color;
-            margin: -0.5vw;
-            margin-bottom: 1vw;
-            font-size: 0.9rem;
-            font-weight: normal;
-        }
-
-        & > li {
+        & > div {
             box-shadow: 0 8px 10px #BBB;
-            list-style: none;
-            width: 45vw;
-            max-width: 500px;
-            min-height: 200px;
-            margin: 0.5vw;
-            padding: 0.5vw;
+            margin: 0.5vmax;
+            padding: 0.5vmax;
+
+            display: flex;
+            flex-direction: column;
+
+            &.isolation > h2:after { background-image: url(images/w-icons/isolation.svg); }
+            &.cost > h2:after { background-image: url(images/w-icons/cost.svg); }
+            &.interaction > h2:after { background-image: url(images/w-icons/interaction.svg); }
+            &.mood > h2:after { background-image: url(images/w-icons/mood.svg); }
+            &.screen > h2:after { background-image: url(images/w-icons/screen.svg); }
+            &.weight > h2:after { background-image: url(images/w-icons/scale.svg); }
+            &.temperature > h2:after { background-image: url(images/w-icons/temperature.svg); }
+
+            & > h2 {
+                &:after {
+                    margin: -5px 0;
+                    flex-grow: 1;
+                    content: " ";
+                    background: center / contain no-repeat;
+                    background-position: right center;
+                    background-color: $main-color;
+                }
+
+                display: flex;
+                background-color: $main-color;
+                margin: 0;
+                color: #fff;
+                margin: -0.5vmax;
+                padding: 20px 15px 20px 20px;
+                font-size: 0.9rem;
+                font-weight: normal;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+            &.group > h2 {
+            }
+
+            > p {
+                text-align: center;
+                font-size: 2.5rem;
+                flex-grow: 1;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                span {
+                    display: block;
+                    font-size: 1rem;
+                }
+            }
+
+            &:not(.group) {
+                width: 25vmax;
+                height: 25vmax;
+                max-width: 210px;
+                max-height: 210px;
+            }
+
+            &.group {
+
+                width: 100%;
+
+                @include for-tablet-portrait-up { 
+                    width: auto;   
+                }
+
+                & > div {
+                    display: flex;
+                    align-content: stretch;
+                    flex-wrap: wrap;
+                    padding: 0.25vmax;
+                    margin: -0.25vmax;
+                    justify-content: center;
+
+                    & > div {
+                        margin: 0.5vmax;
+                        padding: 0.5vmax;
+                        height: 14.5vmax;
+                        max-height: 160px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+
+
+                        > h3 {
+                            margin: 0;
+                            padding: 5px 10px;
+                            margin: -0.5vmax;
+                            margin-bottom: 1vmax;
+                            font-size: 0.9rem;
+                            font-weight: normal;
+                            text-align: center;
+                        }
+    
+                        > p {
+                            text-align: center;
+                            font-size: 2rem;
+                            margin: 0;
+                            padding: 0;
+                            span {
+                                font-size: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

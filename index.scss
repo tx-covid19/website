@@ -72,18 +72,22 @@ nav {
 
         display: flex;
         flex-wrap: wrap;
-        align-items: center;
+        align-items: stretch;
         justify-content: center;
         margin: 0;
         padding: 0;
 
         & > div {
             box-shadow: 0 8px 10px #BBB;
-            margin: 0.5vmax;
-            padding: 0.5vmax;
+
+            // for-tablet-portrait-up
+            // for-tablet-landscape-up
+            // for-desktop-up
+            // for-big-desktop-up
 
             display: flex;
             flex-direction: column;
+            position: relative;
 
             &.isolation > h2:after { background-image: url(images/w-icons/isolation.svg); }
             &.cost > h2:after { background-image: url(images/w-icons/cost.svg); }
@@ -93,7 +97,7 @@ nav {
             &.weight > h2:after { background-image: url(images/w-icons/scale.svg); }
             &.temperature > h2:after { background-image: url(images/w-icons/temperature.svg); }
 
-            & > h2 {
+            > h2 {
                 &:after {
                     margin: -5px 0;
                     flex-grow: 1;
@@ -113,8 +117,6 @@ nav {
                 white-space: nowrap;
                 overflow: hidden;
             }
-            &.group > h2 {
-            }
 
             > p {
                 text-align: center;
@@ -131,22 +133,63 @@ nav {
                 }
             }
 
+            > button {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                width: 20%;
+                height: 20%;
+                background: #fff;
+                border: 1px solid #ccc;
+            }
+
             &:not(.group) {
-                width: 25vmax;
-                height: 25vmax;
-                max-width: 210px;
-                max-height: 210px;
+                width: 45vw;
+                height: 45vw;
+                margin: 1.5vw;
+                padding: 0.5vw;
+                @include for-tablet-portrait-up {
+                    width: 200px;
+                    height: 200px;
+                    margin: 0.5vw;
+                    padding: 0.5vw;
+                }
+                @include for-tablet-landscape-up {
+                    width: 200px;
+                    height: 200px;
+                    margin: 0.5vw;
+                    padding: 0.5vw;
+                }
+                @include for-desktop-up {
+                    width: 220px;
+                    height: 220px;
+                    margin: 10px;
+                    padding: 5px;
+                }
             }
 
             &.group {
+                margin: 1.5vw;
+                padding: 0.5vw;
 
-                width: 100%;
-
-                @include for-tablet-portrait-up { 
-                    width: auto;   
+                @include for-tablet-portrait-up {
+                    min-height: 200px;
+                    margin: 0.5vw;
+                    padding: 0.5vw;
+                }
+                @include for-tablet-landscape-up {
+                    min-height: 200px;
+                    margin: 0.5vw;
+                    padding: 0.5vw;
+                }
+                @include for-desktop-up {
+                    min-height: 220px;
+                    margin: 10px;
+                    padding: 5px;
                 }
 
-                & > div {
+                > div {
+                    flex-grow: 1;
                     display: flex;
                     align-content: stretch;
                     flex-wrap: wrap;
@@ -154,14 +197,11 @@ nav {
                     margin: -0.25vmax;
                     justify-content: center;
 
-                    & > div {
+                    > div {
                         margin: 0.5vmax;
                         padding: 0.5vmax;
-                        height: 14.5vmax;
-                        max-height: 160px;
                         display: flex;
                         flex-direction: column;
-                        justify-content: center;
 
                         &.weather {
                             > p:before {
@@ -176,8 +216,7 @@ nav {
                         > h3 {
                             margin: 0;
                             padding: 5px 10px;
-                            margin: -0.5vmax;
-                            margin-bottom: 1vmax;
+                            margin: 0 -0.5vmax 0;
                             font-size: 0.9rem;
                             font-weight: normal;
                             text-align: center;
@@ -190,6 +229,8 @@ nav {
                             padding: 0;
                             display: flex;
                             align-items: center;
+                            justify-content: center;
+                            flex-grow: 1;
                             span {
                                 font-size: 1rem;
                             }

@@ -1,0 +1,19 @@
+widget.isolation: '# of days in isolation'
+widget.cost: Financial Cost
+widget.interaction: '# of Interactions'
+widget.screen: Screen time
+widget.mood: Mood
+widget.weight: Weight
+widget.temperature: Body Temperature
+widget.environment: Environment
+widget.covid: COVID19 Stats
+
+widget.environment.forecast: Weather Forecast
+widget.environment.pollen: Pollen Count
+
+widget.covid.county_cases: Cases in County
+widget.covid.county_deaths: Deaths in County
+widget.covid.texas_cases: Cases in Texas
+widget.covid.texas_deaths: Deaths in Texas
+widget.covid.us_cases: Cases in US
+widget.covid.us_deaths: Deaths in US

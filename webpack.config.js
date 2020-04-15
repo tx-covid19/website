@@ -13,14 +13,15 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
+        test: /\.(js|jsx)$/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
+          loader: 'babel-loader'
         }
+      },
+      {
+        test: /\.ya?ml$/,
+        type: 'json',
+        use: 'yaml-loader'
       },
       {
         test: /\.s(a|c)ss$/,
@@ -48,7 +49,8 @@ module.exports = {
     port: 9000,
     host: '0.0.0.0',
     disableHostCheck: true,
-    liveReload: true,
+    // liveReload: true,
+    hot: true,
   },
   mode: 'development'
 };

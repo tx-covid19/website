@@ -28,6 +28,10 @@ html, body {
     line-height: 1.5;
 }
 
+input:focus, textarea:focus, select:focus, button:focus {
+    outline: none;
+}
+
 nav {
     display: flex;
     padding: 1vh;
@@ -55,9 +59,19 @@ nav {
             line-height: 2rem;
 
             &.i18n {
-                font-size: 150%;
+                font-variant: all-small-caps;
+                font-size: 90%;
+                opacity: 80%;
                 span {
+                    cursor: pointer;
                     padding: 5px;
+                }
+                &[data-language="en"] span[data-language="en"],
+                &[data-language="es"] span[data-language="es"],
+                &[data-language="pt"] span[data-language="pt"] {
+                    font-weight: bold;
+                    opacity: 100%;
+                    font-size: 110%;
                 }
             }
         }
@@ -78,7 +92,7 @@ nav {
         padding: 0;
 
         & > div {
-            box-shadow: 0 8px 10px #BBB;
+            box-shadow: 0 4px 10px #BBB;
 
             // for-tablet-portrait-up
             // for-tablet-landscape-up
@@ -99,7 +113,7 @@ nav {
 
             > h2 {
                 &:after {
-                    margin: -5px 0;
+                    margin: -5px -5px -5px 0;
                     flex-grow: 1;
                     content: " ";
                     background: right center / contain no-repeat;
@@ -111,7 +125,7 @@ nav {
                 margin: 0;
                 color: #fff;
                 margin: -0.5vmax;
-                padding: 20px 15px 20px 20px;
+                padding: 20px 12px;
                 font-size: 0.9rem;
                 font-weight: normal;
                 white-space: nowrap;
@@ -139,8 +153,30 @@ nav {
                 right: 10px;
                 width: 20%;
                 height: 20%;
+                padding: 0;
                 background: #fff;
-                border: 1px solid #ccc;
+                color: darken(#fff, 50%);
+                font-size: 1.4rem;
+                border-radius: 50%;
+                border: none;
+                
+                box-shadow: 0 3px 5px rgba(0,0,0,0.15);
+                transition: box-shadow 0.2s ease-in-out;
+                &:hover {
+                    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+                }
+
+                &:before {
+                    content: "+";
+                }
+                &.warning {
+                    color: darken(#fdfd96, 50%);
+                    background: #fdfd96;
+                }
+                &.urgent {
+                    color: darken(#ff6961, 50%);
+                    background: #ff6961;
+                }
             }
 
             &:not(.group) {
@@ -241,4 +277,53 @@ nav {
         }
     }
 
+}
+
+input {
+    font-size: 130%;
+    border: 1px solid #ccc;
+    width: 100%;
+    padding: 10px;
+}
+button {
+    float: right;
+    padding: 10px;
+    background: $main-color;
+    border: none;
+    color: #fff;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.15);
+    transition: box-shadow 0.2s ease-in-out;
+    &:hover {
+        box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    }
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    > .container {
+        padding: 20px;
+        background-color: #fff;
+        > .content {
+            margin: 0 auto;
+            max-width: 600px;
+            padding: 20px;
+        }
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
 }

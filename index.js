@@ -5,27 +5,22 @@ import App from "./app";
 
 import './index.scss'
 
-import { IntlProvider } from 'react-intl';
 import messages_en from "./i18n/en.yaml";
+import messages_pt from "./i18n/pt.yaml";
+import messages_es from "./i18n/es.yaml";
 
-const localeData = {
+const messages = {
   en: messages_en,
+  pt: messages_pt,
+  es: messages_es,
 };
 
 const language =
+  localStorage.getItem('language') ||
   (navigator.languages && navigator.languages[0]) ||
   navigator.language ||
   navigator.userLanguage;
 
-const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
-
-const messages =
-  localeData[languageWithoutRegionCode] ||
-  localeData[language] ||
-  localeData.en;
-
 ReactDOM.render(
-    <IntlProvider locale={navigator.language} messages={messages} timeZone="America/Chicago">
-        <App />
-    </IntlProvider>
+  <App language={language} timezone={"America/Chicago"} messages={messages} />
 , document.getElementById("root"));

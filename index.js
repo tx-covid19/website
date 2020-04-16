@@ -5,6 +5,8 @@ import App from "./app";
 
 import './index.scss'
 
+import surveys from './surveys.yaml';
+
 import messages_en from "./i18n/en.yaml";
 import messages_pt from "./i18n/pt.yaml";
 import messages_es from "./i18n/es.yaml";
@@ -22,5 +24,5 @@ const language =
   navigator.userLanguage;
 
 ReactDOM.render(
-  <App language={language} timezone={"America/Chicago"} messages={messages} />
+  <App surveys={surveys} language={language} timezone={"America/Chicago"} messages={messages} />
 , document.getElementById("root"));

@@ -108,7 +108,7 @@ export class TrackerBase extends Base {
     return (
       <React.Fragment>
         <h2><FM id={(group ? ['widget', group, tracker] : ['widget', tracker]).join('.')} /></h2>
-        <p><input type="text" ref={this.ref} /></p>
+        <p><input type="text" ref={this.ref} /><span>{unit}</span></p>
         <button onClick={() => this.handleSubmitTrack()}>Track</button>
       </React.Fragment>
     )
@@ -164,14 +164,19 @@ export class Cost extends TrackerBase {
     return (
       <React.Fragment>
         <h2><FM id={(group ? ['widget', group, tracker] : ['widget', tracker]).join('.')} /></h2>
-        <p><label>Category: </label>
+        <p>
+          <label>Category:</label>
           <select ref={this.categoryRef}>
             <option>Shopping</option>
             <option>Education</option>
             <option>Delivery</option>
           </select>
         </p>
-        <p><label>Cost: </label><input type="text" ref={this.ref} /></p>
+        <p>
+          <label>Cost:</label>
+          <input type="text" ref={this.ref} />
+          <span>{unit}</span>
+        </p>
         <button onClick={() => this.handleSubmitTrack()}>Track</button>
       </React.Fragment>
     )

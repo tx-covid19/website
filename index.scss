@@ -326,7 +326,6 @@ input, select {
     font-size: 130%;
     border: 1px solid #ccc;
     background: #fff;
-    width: 100%;
     padding: 10px;
 }
 button {
@@ -359,6 +358,20 @@ button {
             margin: 0 auto;
             max-width: 600px;
             padding: 20px;
+            p {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                span {
+                    margin: 0 10px;
+                }
+                label {
+                    flex-basis: 100%;
+                }
+                input, select {
+                    flex-grow: 1;
+                }
+            }
         }
     }
 

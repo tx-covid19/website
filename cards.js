@@ -219,6 +219,7 @@ export class Mood extends TrackerBase {
     return (
       <React.Fragment>
         <h2><FM id={(group ? ['widget', group, tracker] : ['widget', tracker]).join('.')} /></h2>
+        <p><em>Soon to be drawings than a select.</em></p>
         <p><select ref={this.ref}>
             <option>Good</option>
             <option>Ok</option>

@@ -1,4 +1,4 @@
-widget.isolation: '# of days in isolation'
+widget.isolation_days: '# of days in isolation'
 widget.cost: Financial Cost
 widget.interaction: '# of Interactions'
 widget.screen: Screen time

@@ -1,4 +1,4 @@
-widget.isolation: Dias em isolamento
+widget.isolation_days: Dias em isolamento
 widget.cost: Custos
 widget.interaction: Interaçōes
 widget.screen: Tempo de Tela
@@ -8,7 +8,9 @@ widget.temperature: Temperatura
 widget.environment: Ambiente
 widget.covid: COVID19 Info
 
-widget.environment.forecast: Precisão de Tempo
+widget.environment.forecast: Precisão de Temp
+widget.environment.forecast.low: Minima
+widget.environment.forecast.high: Maxima
 widget.environment.pollen: Polens
 
 widget.covid.county_cases: Cases in County

@@ -1,4 +1,4 @@
-widget.isolation: '# of days in isolation'
+widget.isolation_days: '# of days in isolation'
 widget.cost: Financial Cost
 widget.interaction: '# of Interactions'
 widget.screen: Screen time
@@ -9,6 +9,8 @@ widget.environment: Environment
 widget.covid: COVID19 Stats
 
 widget.environment.forecast: Weather Forecast
+widget.environment.forecast.low: Low
+widget.environment.forecast.high: High
 widget.environment.pollen: Pollen Count
 
 widget.covid.county_cases: Cases in County

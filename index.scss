@@ -104,7 +104,7 @@ nav {
             flex-direction: column;
             position: relative;
 
-            &.isolation > h2:after { background-image: url(images/w-icons/isolation.svg); }
+            &.isolation_days > h2:after { background-image: url(images/w-icons/isolation_days.svg); }
             &.cost > h2:after { background-image: url(images/w-icons/cost.svg); }
             &.interaction > h2:after { background-image: url(images/w-icons/interaction.svg); }
             &.mood > h2:after { background-image: url(images/w-icons/mood.svg); }

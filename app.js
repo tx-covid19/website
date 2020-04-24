@@ -2,6 +2,18 @@ import React from "react";
 import Modal from "react-modal";
 import { IntlProvider, FormattedMessage as FM } from 'react-intl';
 
+import {
+  Isolation,
+  Cost,
+  Interaction,
+  Screen,
+  Mood,
+  Weight,
+  Temperature,
+  WeatherForecast,
+  Pollen,
+} from './cards';
+
 class Track extends React.Component {
   render() {
     return <button onClick={this.props.onClick} className={this.props.type}></button>
@@ -9,6 +21,33 @@ class Track extends React.Component {
 }
 
 Modal.setAppElement('#root')
+
+const SERVER = '/api'
+
+async function api({ url, data = null, auth, json = true, request = false }) {
+  const req = await fetch(
+    `${SERVER}${url}`, {
+      method: data ? 'POST' : 'GET',
+      mode: 'cors',
+      cache: 'no-cache',
+      headers: {
+        ...auth && { 'Authorization': `Bearer ${auth}` },
+        ...data && { 'Content-Type': 'application/json' },
+      },
+      body: data ? JSON.stringify(data) : null,
+    }
+  );
+
+  if (request) {
+    return req
+  }
+
+  if (json) {
+    return await req.json()
+  } else {
+    return await req.body()
+  }
+}
 
 class App extends React.Component {
 
@@ -18,24 +57,53 @@ class App extends React.Component {
     this.messages = messages;
     this.state = {
       language, timezone,
-      track: false,
       signup: false,
       login: false,
+      tokens: JSON.parse(localStorage.getItem('tokens') || '{}')
     };
+
+    this.login = {
+      patient_id: React.createRef(),
+      password: React.createRef(),
+    };
+
+    this.fetchTrack();
   }
   
+  async fetchTrack() {
+    const trackers = await api({ url: '/user/tracker' });
+    this.setState({ trackers });
+  }
+
+  async updateTrack(trackers) {
+    console.log(trackers)
+    return await api({
+      url: '/user/tracker',
+      data: {
+        track_date: new Date(),
+        ...trackers
+      }
+    });
+  }
+
   handleLanguage(language) {
     this.setState({ language });
-    localStorage.setItem('language', language)
+    localStorage.setItem('language', language);
   }
 
-  handleTrack(widget) {
-    this.setState({ track: true, track_widget: widget });
-  }
-
-  handleLogin(e) {
+  async handleLogin(e) {
     e.preventDefault();
-    this.setState({ login: false });
+    const patient_id = this.login.patient_id.current.value
+    const password = this.login.password.current.value
+    
+    const tokens = await api({
+      url: '/user/login',
+      data: {
+        patient_id, password
+      }
+    });
+    localStorage.setItem('tokens', JSON.stringify(tokens))
+    this.setState({ login: false, tokens });
   }
 
   handleSignUp() {
@@ -64,22 +132,6 @@ class App extends React.Component {
       <IntlProvider locale={this.state.language} messages={messages} timeZone={this.state.timezone}>
 
         <Modal 
-          isOpen={this.state.track}
-          onRequestClose={() => this.handleToggleState('track')}
-          className="modal"
-          overlayClassName="overlay"
-          closeTimeoutMS={100}
-        >
-          <div className="container">
-            <div className="content">
-              <p><FM id={`widget.${this.state.track_widget}`} /></p>
-              <p><input type="text" /></p>
-              <button onClick={() => this.handleToggleState('track')}>Track</button>
-            </div>
-          </div>
-        </Modal>
-
-        <Modal 
           isOpen={this.state.signup}
           onRequestClose={() => this.handleToggleState('signup')}
           className="modal signup"
@@ -104,15 +156,14 @@ class App extends React.Component {
             <div className="content">
               <form>
                 <label>User ID</label>
-                <input type="text" name="user" />
+                <input type="text" ref={this.login.patient_id} />
                 <label>Password</label>
-                <input type="password" name="password" />
+                <input type="password" ref={this.login.password} />
                 <button type="submit" onClick={(e) => this.handleLogin(e)}>Log-in</button>
               </form>
             </div>
           </div>
         </Modal>
-
 
         <nav>
           <h1>TX COVID19</h1>
@@ -130,49 +181,21 @@ class App extends React.Component {
         <main>
           <section id="collections">
               <div>
-                <div className="isolation">
-                  <h2><FM id="widget.isolation" /></h2>
-                  <p>12 <span>days</span></p>
-                  <Track onClick={() => this.handleTrack('isolation')} />
-                </div>
-                <div className="cost">
-                  <h2><FM id="widget.cost" /></h2>
-                  <p>1205.00 <span>US$</span></p>
-                  <Track onClick={() => this.handleTrack('cost')} type="warning" />
-                </div>
-                <div className="interaction">
-                  <h2><FM id="widget.interaction" /></h2>
-                  <p>12 <span>people  </span></p>
-                  <Track onClick={() => this.handleTrack('interaction')} type="urgent" />
-                </div>
-                <div className="screen">
-                  <h2><FM id="widget.screen" /></h2>
-                  <p>8:23 <span>hours</span></p>
-                </div>
-                <div className="mood">
-                  <h2><FM id="widget.mood" /></h2>
-                  <p>Good</p>
-                </div>
-                <div className="weight">
-                  <h2><FM id="widget.weight" /></h2>
-                  <p>54.2 <span>kg</span></p>
-                </div>
-                <div className="temperature">
-                  <h2><FM id="widget.temperature" /></h2>
-                  <p>97.3 <span>F</span></p>
-                </div>
+                <Isolation value={10} />
+                <Cost value={1023.12} />
+                <Interaction value={10} />
+                <Screen value={120} />
+
+                <Mood value={'GOOD'} onTrack={this.updateTrack} />
+
+                <Weight value={54.2} unit="lbs" />
+                <Temperature value={36.2} unit="°F" />
       
                 <div className="group">
                   <h2><FM id="widget.environment" /></h2>
                   <div>
-                    <div className="weather">
-                      <h3><FM id="widget.environment.forecast" /></h3>
-                      <p>85 <span>F</span></p>
-                    </div>
-                    <div>
-                      <h3><FM id="widget.environment.pollen" /></h3>
-                      <p>High</p>
-                    </div>
+                    <WeatherForecast current={24} low={20} high={25} unit="°F" />
+                    <Pollen value={'HIGH'} />
                   </div>
                 </div>
       

@@ -123,28 +123,24 @@ nav {
 
                 display: flex;
                 background-color: $main-color;
-                margin: 0;
                 color: #fff;
-                margin: -0.5vmax;
+                margin: -0.75vw;
                 padding: 20px 12px;
                 font-size: 0.9rem;
                 font-weight: normal;
                 white-space: nowrap;
                 overflow: hidden;
-            }
-
-            > p {
-                text-align: center;
-                font-size: 2.5rem;
-                flex-grow: 1;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                span {
-                    display: block;
-                    font-size: 1rem;
+                @include for-phone-only {
+                    margin: -0.75vw;
+                }
+                @include for-tablet-portrait-up {
+                    margin: -0.5vw;
+                }
+                @include for-tablet-landscape-up {
+                    margin: -0.5vw;
+                }
+                @include for-desktop-up {
+                    margin: -5px;
                 }
             }
 
@@ -160,6 +156,10 @@ nav {
                 font-size: 1.4rem;
                 border-radius: 50%;
                 border: none;
+
+                display: flex;
+                justify-content: center;
+                
                 
                 box-shadow: 0 3px 5px rgba(0,0,0,0.15);
                 transition: box-shadow 0.2s ease-in-out;
@@ -177,6 +177,13 @@ nav {
                 &.urgent {
                     color: darken(#ff6961, 50%);
                     background: #ff6961;
+                }
+            }
+
+            &.interaction > button {
+                &:before {
+                    content: "+1";
+                    font-size: 1rem;
                 }
             }
 
@@ -202,6 +209,21 @@ nav {
                     height: 220px;
                     margin: 10px;
                     padding: 5px;
+                }
+
+                > div {
+                    text-align: center;
+                    font-size: 2.5rem;
+                    flex-grow: 1;
+                    margin: 0;
+                    padding: 0;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    span {
+                        display: block;
+                        font-size: 1rem;
+                    }
                 }
             }
 
@@ -240,17 +262,31 @@ nav {
                         display: flex;
                         flex-direction: column;
 
-                        &.weather {
-                            > p:before {
-                                content: " ";
-                                width: 60px;
-                                height: 60px;
-                                background: right center / contain no-repeat url(images/icons/cloudy-day.svg);
-                                margin-right: 4px;
+                        &.forecast {
+                            > div {
+                                flex-wrap: wrap;
+                                &:before {
+                                    content: " ";
+                                    width: 60px;
+                                    height: 60px;
+                                    background: right center / contain no-repeat url(images/icons/cloudy-day.svg);
+                                    margin-right: 4px;
+                                }
+                                > div {
+                                    display: block;
+                                    flex-basis: 100%;
+                                    font-style: normal;
+                                    font-size: 0.8rem;
+                                    display: flex;
+                                    justify-content: space-evenly;
+                                    span {
+                                        font-size: inherit;
+                                    }
+                                }
                             }
                         }
 
-                        > h3 {
+                        > h2, > h3 {
                             margin: 0;
                             padding: 5px 10px;
                             margin: 0 -0.5vmax 0;
@@ -259,7 +295,7 @@ nav {
                             text-align: center;
                         }
     
-                        > p {
+                        > div {
                             text-align: center;
                             font-size: 2rem;
                             margin: 0;
@@ -280,9 +316,16 @@ nav {
 
 }
 
-input {
+input, select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+
+    border-radius: 0;
     font-size: 130%;
     border: 1px solid #ccc;
+    background: #fff;
     width: 100%;
     padding: 10px;
 }

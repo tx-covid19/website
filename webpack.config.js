@@ -51,6 +51,12 @@ module.exports = {
     disableHostCheck: true,
     // liveReload: true,
     hot: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        pathRewrite: {'^/api' : ''}
+      }
+    }
   },
   mode: 'development'
 };

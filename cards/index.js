@@ -137,7 +137,7 @@ export class TrackerBase extends Base {
   }
 }
 
-export class Isolation extends TrackerBase {
+export class Isolation extends Base {
   static tracker = 'isolation_days';
   static unit = 'days';
   static format = '%d';
@@ -309,4 +309,73 @@ export class Pollen extends Base {
   static tracker = 'pollen';
   static unit = false;
   static format = '%s';
+}
+
+export class Cases extends Base {
+  static group = 'covid'
+  static unit = false;
+  static format = '%d';
+
+  constructor (props) {
+    super(props);
+    this.tracker = props.level;
+    this.state.tracker = props.level;
+    this.state.value = {
+      cases: props.cases,
+      deaths: props.deaths,
+    }
+  }
+
+  renderCardMetric() {
+    const { group, tracker, value: { cases, deaths }, unit, format } = this.state
+    return (
+      <React.Fragment>
+        <div className="cases">
+          <h3><FM id={(group ? ['widget', group, tracker] : ['widget', tracker]).join('.') + '.cases'} /></h3>
+          <p>{format.$(cases)}</p>
+        </div>
+        <div className="deaths">
+          <h3><FM id={(group ? ['widget', group, tracker] : ['widget', tracker]).join('.') + '.deaths'} /></h3>
+          <p>{format.$(deaths)}</p>
+        </div>
+      </React.Fragment>
+    )
+  }
+}
+
+export class Group extends React.Component {
+  static group = null;
+  constructor (props) {
+    super(props);
+    this.setDefaultState();
+  }
+  setDefaultState() {
+    const { group } = this.props;
+    this.state = {
+      ...this.state,
+      group: group || this.group || this.constructor.group,
+    }
+  }
+  render() {
+    return (
+      <div className="group">
+        <h2><FM id={`widget.${this.state.group}`} /></h2>
+        <div>
+          {this.props.children || null}
+        </div>
+      </div>
+    )
+  }
+}
+
+export class Fitbit extends Group {
+  static group = 'fitbit';
+}
+
+export class Covid extends Group {
+  static group = 'covid';
+}
+
+export class Environment extends Group {
+  static group = 'environment';
 }

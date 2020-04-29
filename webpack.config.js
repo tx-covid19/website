@@ -2,11 +2,14 @@ const path = require('path');
 
 module.exports = {
 
-  entry: './index.js',
+  entry: {
+    app: './index.js',
+    fitbit: './fitbit/index.js'
+  },
 
   output: {
     path: path.resolve(__dirname + '/content'),
-    filename: 'bundle.js',
+    filename: '[name].js',
     publicPath: '/content',
   },
 
@@ -51,9 +54,11 @@ module.exports = {
     disableHostCheck: true,
     // liveReload: true,
     hot: true,
+    https: true,
     proxy: {
       '/api': {
         target: 'http://localhost:8080',
+        changeOrigin: true,
         pathRewrite: {'^/api' : ''}
       }
     }

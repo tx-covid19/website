@@ -12,42 +12,22 @@ import {
   Temperature,
   WeatherForecast,
   Pollen,
+  Cases,
+  Fitbit,
+  Environment,
+  Covid,
 } from './cards';
 
-class Track extends React.Component {
-  render() {
-    return <button onClick={this.props.onClick} className={this.props.type}></button>
-  }
-}
+import {
+  FitBitSignIn
+} from './cards/fitbit';
 
-Modal.setAppElement('#root')
+import {
+  Conditional,
+  empty,
+} from './utils';
 
-const SERVER = '/api'
-
-async function api({ url, data = null, auth, json = true, request = false }) {
-  const req = await fetch(
-    `${SERVER}${url}`, {
-      method: data ? 'POST' : 'GET',
-      mode: 'cors',
-      cache: 'no-cache',
-      headers: {
-        ...auth && { 'Authorization': `Bearer ${auth}` },
-        ...data && { 'Content-Type': 'application/json' },
-      },
-      body: data ? JSON.stringify(data) : null,
-    }
-  );
-
-  if (request) {
-    return req
-  }
-
-  if (json) {
-    return await req.json()
-  } else {
-    return await req.body()
-  }
-}
+import api from './api';
 
 class App extends React.Component {
 
@@ -62,21 +42,36 @@ class App extends React.Component {
       tokens: JSON.parse(localStorage.getItem('tokens') || '{}')
     };
 
+    this.state.logged = !empty(this.state.tokens);
+
     this.login = {
       patient_id: React.createRef(),
       password: React.createRef(),
     };
 
-    this.fetchTrack();
+    this.fitbitSignIn = this.fitbitSignIn.bind(this);
+    this.fitbitAuthorize = this.fitbitAuthorize.bind(this);
+
+    if (this.state.logged) {
+      this.fetchTrack();
+    }
   }
   
   async fetchTrack() {
-    const trackers = await api({ url: '/user/tracker' });
+    const overview = await api({
+      url: '/user/overview',
+      auth: this.state.tokens.access_token,
+    });
+    this.setState({ overview });
+
+    const trackers = await api({
+      url: '/user/tracker',
+      auth: this.state.tokens.access_token,
+    });
     this.setState({ trackers });
   }
 
   async updateTrack(trackers) {
-    console.log(trackers)
     return await api({
       url: '/user/tracker',
       data: {
@@ -86,15 +81,10 @@ class App extends React.Component {
     });
   }
 
-  handleLanguage(language) {
-    this.setState({ language });
-    localStorage.setItem('language', language);
-  }
-
   async handleLogin(e) {
     e.preventDefault();
-    const patient_id = this.login.patient_id.current.value
-    const password = this.login.password.current.value
+    const patient_id = this.login.patient_id.current.value;
+    const password = this.login.password.current.value;
     
     const tokens = await api({
       url: '/user/login',
@@ -102,12 +92,46 @@ class App extends React.Component {
         patient_id, password
       }
     });
-    localStorage.setItem('tokens', JSON.stringify(tokens))
-    this.setState({ login: false, tokens });
+    if (tokens) {
+      localStorage.setItem('tokens', JSON.stringify(tokens));
+      this.setState({ login: false, logged: true, tokens });
+    }
+  }
+
+  async handleLogOut(e) {
+    e.preventDefault();
+    localStorage.removeItem('tokens');
+    this.setState({ logged: false, tokens: null, overview: null, trackers: null });
   }
 
   handleSignUp() {
     this.setState({ signup: true });
+  }
+
+  async fitbitSignIn() {
+    const signin = await api({
+      url: '/fitbit/request',
+      auth: this.state.tokens.access_token,
+    });
+
+    if (signin && signin.url) {
+      return signin.url;
+    }
+
+    return false;
+  }
+
+  async fitbitAuthorize(params) {
+    const authorize = await api({
+      url: `/fitbit/authorize${params}`,
+      auth: this.state.tokens.access_token,
+    });
+    await this.fetchTrack();
+  }
+
+  handleLanguage(language) {
+    this.setState({ language });
+    localStorage.setItem('language', language);
   }
 
   handleToggleState(state) {
@@ -121,12 +145,14 @@ class App extends React.Component {
     if (this.messages[language]) {
 
     } else if (this.messages[languageWithoutRegionCode]) {
-      language = languageWithoutRegionCode
+      language = languageWithoutRegionCode;
     } else {
-      language = 'en'
+      language = 'en';
     }
 
-    const messages = this.messages[language]
+    const messages = this.messages[language];
+
+    const overview = this.state.overview || {};
 
     return (
       <IntlProvider locale={this.state.language} messages={messages} timeZone={this.state.timezone}>
@@ -137,6 +163,7 @@ class App extends React.Component {
           className="modal signup"
           overlayClassName="overlay"
           closeTimeoutMS={100}
+          appElement={document.getElementById('root')}
         >
           <div className="container">
             <div className="content">
@@ -151,6 +178,7 @@ class App extends React.Component {
           className="modal login"
           overlayClassName="overlay"
           closeTimeoutMS={100}
+          appElement={document.getElementById('root')}
         >
           <div className="container">
             <div className="content">
@@ -168,8 +196,13 @@ class App extends React.Component {
         <nav>
           <h1>TX COVID19</h1>
           <ol>
-            <li onClick={() => this.handleToggleState('signup')}>Sign-up</li>
-            <li onClick={() => this.handleToggleState('login')}>Log-in</li>
+            <Conditional if={this.state.logged}>
+              <li onClick={(e) => this.handleLogOut(e)}>Log-out</li>
+            </Conditional>
+            <Conditional if={!this.state.logged}>
+              <li onClick={() => this.handleToggleState('signup')}>Sign-up</li>
+              <li onClick={() => this.handleToggleState('login')}>Log-in</li>
+            </Conditional>
             <li className="i18n" data-language={language}>
               <span data-language="en" onClick={() => this.handleLanguage('en')}>ENG</span>
               <span data-language="es" onClick={() => this.handleLanguage('es')}>SPA</span>
@@ -180,55 +213,36 @@ class App extends React.Component {
       
         <main>
           <section id="collections">
-              <div>
-                <Isolation value={10} />
-                <Cost value={1023.12} />
-                <Interaction value={10} />
-                <Screen value={120} />
+            <div>
+              <Conditional if={!empty(overview)}><Isolation value={10} /></Conditional>
+              <Conditional if={!empty(overview)}><Cost value={1023.12} /></Conditional>
+              <Conditional if={!empty(overview)}><Interaction value={10} /></Conditional>
+              <Conditional if={!empty(overview)}><Screen value={120} /></Conditional>
 
-                <Mood value={'GOOD'} onTrack={this.updateTrack} />
+              <Conditional if={!empty(overview)}><Mood value={'GOOD'} onTrack={this.updateTrack} /></Conditional>
 
-                <Weight value={54.2} unit="lbs" />
-                <Temperature value={36.2} unit="°F" />
-      
-                <div className="group">
-                  <h2><FM id="widget.environment" /></h2>
-                  <div>
-                    <WeatherForecast current={24} low={20} high={25} unit="°F" />
-                    <Pollen value={'HIGH'} />
-                  </div>
-                </div>
-      
-                <div className="group">
-                  <h2><FM id="widget.covid" /></h2>
-                  <div>
-                    <div>
-                      <h3><FM id="widget.covid.county_cases" /></h3>
-                      <p>0</p>
-                    </div>
-                    <div>
-                      <h3><FM id="widget.covid.county_deaths" /></h3>
-                      <p>0</p>
-                    </div>
-                    <div>
-                      <h3><FM id="widget.covid.texas_cases" /></h3>
-                      <p>0</p>
-                    </div>
-                    <div>
-                      <h3><FM id="widget.covid.texas_deaths" /></h3>
-                      <p>0</p>
-                    </div>
-                    <div>
-                      <h3><FM id="widget.covid.us_cases" /></h3>
-                      <p>0</p>
-                    </div>
-                    <div>
-                      <h3><FM id="widget.covid.us_deaths" /></h3>
-                      <p>0</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Conditional if={!empty(overview)}><Weight value={54.2} unit="lbs" /></Conditional>
+              <Conditional if={!empty(overview)}><Temperature value={36.2} unit="°F" /></Conditional>
+
+              <Conditional if={!empty(overview)}>
+                <Fitbit>
+                  <Conditional if={!overview.fitbit}>
+                    <FitBitSignIn onSignIn={this.fitbitSignIn} onAuthorize={this.fitbitAuthorize} />
+                  </Conditional>
+                </Fitbit>
+              </Conditional>
+    
+              <Environment>
+                <WeatherForecast current={24} low={20} high={25} unit="°F" />
+                <Pollen value={'HIGH'} />
+              </Environment>
+    
+              <Covid>
+                <Cases level="county" cases={0} deaths={0} />
+                <Cases level="country" cases={0} deaths={0} />
+                <Cases level="world" cases={0} deaths={0} />
+              </Covid>
+            </div>
           </section>
         </main>
       </IntlProvider>

@@ -13,9 +13,21 @@ widget.environment.forecast.low: Low
 widget.environment.forecast.high: High
 widget.environment.pollen: Pollen Count
 
-widget.covid.county_cases: Cases in County
-widget.covid.county_deaths: Deaths in County
-widget.covid.texas_cases: Cases in Texas
-widget.covid.texas_deaths: Deaths in Texas
-widget.covid.us_cases: Cases in US
-widget.covid.us_deaths: Deaths in US
+widget.covid.county: County
+widget.covid.texas: Texas
+widget.covid.country: Country
+widget.covid.world: Cases
+
+widget.covid.cases: Cases
+widget.covid.deaths: Deaths
+
+widget.covid.county.cases: Cases
+widget.covid.county.deaths: Deaths
+widget.covid.texas.cases: Cases
+widget.covid.texas.deaths: Deaths
+widget.covid.world.cases: Cases
+widget.covid.world.deaths: Deaths
+widget.covid.country.cases: Cases
+widget.covid.country.deaths: Deaths
+
+widget.fitbit: Fitbit
